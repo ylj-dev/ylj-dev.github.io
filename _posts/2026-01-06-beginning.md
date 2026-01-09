@@ -6,6 +6,8 @@ date: 2026-01-06
 
 layout: post
 
+system: macOS
+
 ---
 
 ## 为什么要开始这个计划？

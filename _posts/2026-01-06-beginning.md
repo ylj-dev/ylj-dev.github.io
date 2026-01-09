@@ -143,7 +143,56 @@ layout: post
    - 当提示输入密码时，**不要输入你的GitHub账户密码，而是粘贴你第二步生成的令牌**。
    - 成功后，系统通常会询问你是否将凭证保存到钥匙串，选择“是”以便未来无需重复输入。
 
-7. **永久忽略`.DS_Store文件`（macOS系统文件，`git status`时看到了再进行处理即可）**
+7. **连接协议切换到 SSH 协议（推荐）**
+
+   优点：
+
+   ​	SSH将完全绕过HTTP/HTTPS的所有代理、过滤和连接问题，解决可能出现的`git push`卡住的问题。
+
+   操作步骤：
+
+   - **生成SSH密钥**（如果从未生成过）：
+
+     ```bash
+     ssh-keygen -t ed25519 -C "你的邮箱地址"
+     ```
+
+     按提示连续回车，使用默认设置（建议不设密码）。
+
+   - **将公钥添加到GitHub**：
+
+     - 复制公钥内容：`cat ~/.ssh/id_ed25519.pub`
+     - 登录 [GitHub](https://github.com/)，点击右上角头像 → **Settings** → **SSH and GPG keys** → **New SSH key**。
+     - 粘贴公钥，取个标题（如`My Mac`），点击 **Add SSH key**。
+
+   - **修改你本地仓库的远程地址为SSH格式**（这是最关键的一步）：
+
+     ```bash
+     git remote set-url origin git@github.com:ylj-dev/ylj_dev.github.io.git
+     ```
+
+   - **测试并推送**：
+
+     ```bash
+     # 测试SSH连接
+     ssh -T git@github.com
+     # 第一次通过SSH连接需要验证指纹, 输入yes即可, 示例如下。
+     # 看到 “Hi ylj-dev! You've successfully authenticated...” 即表示成功。
+     # 这是SSH协议的标准安全机制。因为是第一次通过SSH连接 github.com, 电脑本地没有记录过它的身份指纹, 系统把这个指纹（SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU）显示给你，让你核对。
+     # 输入yes之后：你的电脑会将这个指纹保存到 ~/.ssh/known_hosts 文件中。下次再连接时，就不会有此提示了。
+     The authenticity of host 'github.com (20.205.243.166)' can't be established.
+     ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+     This key is not known by any other names.
+     Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+     Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+     Hi ylj-dev! You've successfully authenticated, but GitHub does not provide shell access.
+     # 执行推送
+     git push origin main
+     ```
+
+   现在就可以使用SSH协议进行所有Git操作了，可能出现的`git push`卡住的问题将不复存在。
+
+8. **永久忽略`.DS_Store文件`（macOS系统文件，`git status`时看到了再进行处理即可）**
 
    - 详细解释
 
@@ -175,10 +224,9 @@ layout: post
 
 **完成标志**：打开 `https://你的用户名.github.io` 能看到页面
 
-## 01-07进展
+### **美化博客**
 
-1. 写一篇C++智能指针的复习笔记
-2. 设计开源项目的整体架构
+
 
 ---
 *每天进步一点点，就是最大的成功*

@@ -1,0 +1,28 @@
+title: "ylj的C++学习笔记"
+description: "记录C++学习、LeetCode刷题、计算机科学概论阅读笔记"
+url: "https://ylj-dev.github.io"
+baseurl: ""
+theme: jekyll-theme-cayman  # 使用GitHub默认主题
+
+# 作者信息
+author: "ylj"
+github_username: "ylj-dev"
+
+# 构建设置
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+# 插件
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 排除文件
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+
+# 自定义设置
+show_excerpts: true

@@ -7,7 +7,7 @@ excerpt: "记录我作为游戏服务器开发者开始C++学习计划的过程"
 render_with_liquid: false
 ---
 
-{% raw %}
+
 
 ## 为什么要开始这个计划？
 
@@ -695,9 +695,6 @@ categories: [cs]
 
 
 
-
-
 ---
 *每天进步一点点，就是最大的成功*
 
-{% endraw %}

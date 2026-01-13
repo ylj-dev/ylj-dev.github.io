@@ -2,7 +2,7 @@ title: "ylj的C++学习笔记"
 description: "记录C++学习、LeetCode刷题、计算机科学概论阅读笔记、开源项目开发"
 url: "https://ylj-dev.github.io"
 baseurl: ""
-remote_theme: pages-themes/cayman@v0.2.0
+theme: jekyll-theme-cayman  # 使用GitHub默认主题
 
 # 作者信息
 author: "ylj"
@@ -15,7 +15,6 @@ permalink: /:year/:month/:day/:title/
 
 # 插件
 plugins:
-  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
 

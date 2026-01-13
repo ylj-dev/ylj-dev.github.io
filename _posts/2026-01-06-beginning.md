@@ -4,6 +4,7 @@ title: "我的C++学习之旅开始啦！"
 date: 2026-01-06
 categories: [cpp, open-source]
 excerpt: "记录我作为游戏服务器开发者开始C++学习计划的过程"
+render_with_liquid: false
 ---
 
 
@@ -658,6 +659,39 @@ categories: [cs]
 
 
 **完成标志**：前往 Actions 页面(`https://github.com/ylj-dev/ylj-dev.github.io/actions`)。会看到一个新的工作流（可能是 `jekyll` 或 `pages-build-deployment`）立刻开始运行，构建成功后访问博客网站查看所有更新是否已生效。
+
+### 禁用整篇文章的Liquid渲染
+
+- **问题：**
+
+  ​	markdown文档在浏览器部分渲染失败。
+
+- **原因：**
+
+  ​	文章内容中包含了大量Jekyll模板引擎（Liquid）的保留字符和语法，导致解析器在处理中途“宕机”了。比如：`{`、`}`、`%`、`|`、`:` 等符号，这些正是Liquid 模板语言的标记，Jekyll 会尝试将它们当作指令来执行，结果当然是失败并中断了渲染。
+
+- **解决方案：**
+
+  - 方法一：使用 `{% raw %}` 标签
+
+    ​	将这些“高危”代码块用 **`{% raw %}` 和 `{% endraw %}`** 标签包裹起来，告诉Jekyll：“这里面的内容都是纯文本，不要解析”。
+
+  - 方法二：禁用整篇文章的Liquid渲染（推荐）
+
+    ​	在文章的 **Front Matter**（就是开头 `---` 之间的部分）中，加入一行配置即可。		
+
+    ```markdown
+    ---
+    layout: post
+    title: "我的C++学习之旅开始啦！"
+    date: 2026-01-06
+    categories: [cpp, open-source]
+    excerpt: "记录我作为游戏服务器开发者开始C++学习计划的过程"
+    render_with_liquid: false  # <--- 加入这一行关键配置
+    ---
+    ```
+
+    ​	**这行配置的作用是**：告诉Jekyll，“**在渲染这篇文章时，不要处理里面的任何 `{ }` `%` 等Liquid标签，把它们全部当成纯文本**”。
 
 
 

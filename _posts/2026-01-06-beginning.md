@@ -4,7 +4,6 @@ title: "我的C++学习之旅开始啦！"
 date: 2026-01-06
 categories: [cpp, open-source]
 excerpt: "记录我作为游戏服务器开发者开始C++学习计划的过程"
-render_with_liquid: false
 ---
 
 
@@ -239,6 +238,8 @@ render_with_liquid: false
 
 2. **创建分类目录页面**
 
+   {% raw %}
+
    ```bash
    cat > categories.md << "EOF"
    ---
@@ -262,7 +263,11 @@ render_with_liquid: false
    EOF
    ```
 
+   {% endraw %}
+
 3. **创建分类文件夹和页面**
+
+   {% raw %}
 
    ```bash
    mkdir -p categories
@@ -372,7 +377,11 @@ render_with_liquid: false
    EOF
    ```
 
+   {% endraw %}
+
 4. **创建首页（添加分类链接）**
+
+   {% raw %}
 
    ```bash
    # 创建 index.md
@@ -441,7 +450,11 @@ render_with_liquid: false
    EOF
    ```
 
+   {% endraw %}
+
 5. **创建归档页面**
+
+   {% raw %}
 
    ```bash
    cat > archive.md << 'EOF'
@@ -461,6 +474,8 @@ render_with_liquid: false
    {% endfor %}
    EOF
    ```
+
+   {% endraw %}
 
 6. **创建关于页面**
 
@@ -672,9 +687,9 @@ categories: [cs]
 
 - **解决方案：**
 
-  - 方法一：使用**`raw` **标签
+  - 方法一：使用`raw`标签
 
-    ​	将这些“高危”代码块用**`raw` **标签包裹起来，告诉Jekyll：“这里面的内容都是纯文本，不要解析”。
+    ​	将这些“高危”代码块用`raw`标签包裹起来，告诉Jekyll：“这里面的内容都是纯文本，不要解析”。
 
   - 方法二：禁用整篇文章的Liquid渲染（推荐）
 

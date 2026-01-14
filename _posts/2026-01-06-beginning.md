@@ -238,283 +238,31 @@ excerpt: "记录我作为游戏服务器开发者开始C++学习计划的过程"
 
 2. **创建分类目录页面**
 
-   {% raw %}
-   ```bash
-   cat > categories.md << "EOF"
-   ---
-   layout: page
-   title: "所有分类"
-   permalink: /categories/
-   ---
+   `categories.md`
    
-   # 📚 所有分类
-   
-   {% for category in site.categories %}
-   ## {{ category[0] }}
-   {% for post in category[1] %}
-   - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
-   {% endfor %}
-   {% endfor %}
-   
-   ---
-   
-   [返回首页](/)
-   EOF
-   ```
-   {% endraw %}
-
 3. **创建分类文件夹和页面**
 
-   {% raw %}
-   ```bash
-   mkdir -p categories
-   
-   # C++分类页面
-   cat > categories/cpp.md << "EOF"
-   ---
-   layout: page
-   title: "C++学习笔记"
-   permalink: /categories/cpp/
-   ---
-   
-   # C++学习笔记
-   
-   ## 学习路线图
-   1. **基础阶段** - 语法、数据类型、控制流
-   2. **核心阶段** - 面向对象、模板、STL
-   3. **进阶阶段** - 现代C++、多线程、网络编程
-   
-   ## 文章列表
-   {% for post in site.categories.cpp %}
-   - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
-   {% endfor %}
-   
-   ---
-   
-   [查看所有分类](/categories/) | [返回首页](/)
-   EOF
-   
-   # 算法分类页面
-   cat > categories/algorithm.md << "EOF"
-   ---
-   layout: page
-   title: "算法刷题"
-   permalink: /categories/algorithm/
-   ---
-   
-   # 算法刷题
-   
-   ## 刷题计划
-   跟随《代码随想录》顺序，每天1-2题。
-   
-   ## 文章列表
-   {% for post in site.categories.algorithm %}
-   - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
-   {% endfor %}
-   
-   ---
-   
-   [查看所有分类](/categories/) | [返回首页](/)
-   EOF
-   
-   # 计算机科学分类页面
-   cat > categories/cs.md << "EOF"
-   ---
-   layout: page
-   title: "计算机科学"
-   permalink: /categories/cs/
-   ---
-   
-   # 计算机科学
-   
-   ## 学习内容
-   - 计算机组成原理
-   - 操作系统
-   - 计算机网络
-   - 数据结构与算法
-   
-   ## 文章列表
-   {% for post in site.categories.cs %}
-   - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
-   {% endfor %}
-   
-   ---
-   
-   [查看所有分类](/categories/) | [返回首页](/)
-   EOF
-   
-   # 开源项目分类页面
-   cat > categories/open-source.md << 'EOF'
-   ---
-   layout: page
-   title: "开源项目"
-   permalink: /categories/open-source/
-   ---
-   
-   # 开源项目
-   
-   ## 项目计划
-   1. **MiniGameServer** - 轻量级C++游戏服务器框架
-   2. **其他实践项目** - 将所学应用于实际开发
-   
-   ## 学习目标
-   - 实践现代C++编程
-   - 学习项目架构设计
-   - 掌握Git协作流程
-   - 参与开源社区
-   
-   ## 相关文章
-   {% for post in site.categories.open-source %}
-   - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
-   {% endfor %}
-   
-   ---
-   
-   [查看所有分类](/categories/) | [返回首页](/)
-   EOF
-   ```
-   {% endraw %}
+   `categories/`
+
+   `categories/cpp.md`
+
+   `categories/algorithm.md`
+
+   `categories/cs.md`
+
+   `categories/open-source.md`
 
 4. **创建首页（添加分类链接）**
 
-   {% raw %}
-   ```bash
-   # 创建 index.md
-   cat > index.md << 'EOF'
-   ---
-   layout: default
-   title: "首页"
-   ---
-   
-   # 欢迎来到我的学习博客！👨‍💻
-   
-   我是 **ylj**，一名专注于 **C++ 游戏服务器后端开发** 的工程师。这里是我系统学习、沉淀知识的地方。
-   
-   ## 📝 最新文章
-   
-   {% for post in site.posts limit:5 %}
-   - **【{{ post.categories | first }}】** [{{ post.title }}]({{ post.url }}) - <small>{{ post.date | date: "%Y-%m-%d" }}</small>
-   {% if post.excerpt %}  *{{ post.excerpt | strip_html | truncate: 100 }}* {% endif %}
-   {% endfor %}
-   
-   [查看所有文章归档...](/archive.html)
-   
-   ---
-   
-   ## 🎯 我的核心学习路径
-   
-   | 目标 | 关键行动 | 产出 |
-   | :--- | :--- | :--- |
-   | **C++ 精通** | 基础→面向对象→STL→现代C++→项目实践 | 系列笔记、开源项目 |
-   | **算法提升** | 跟随《代码随想录》，每日刷题，参加周赛 | LeetCode 题解、竞赛总结 |
-   | **CS 基础巩固** | 精读《计算机科学概论》等经典 | 核心概念笔记、体系理解 |
-   | **工程能力** | 设计并实现一个 C++ 游戏服务器框架 | 开源项目、架构文档 |
-   
-   ---
-   
-   ## 📚 按主题探索
-   
-   <div class="category-grid">
-   <a href="/categories/cpp/" class="category-card">
-   <h3>C++ 学习笔记</h3>
-   <p>从语法到工程实践的系统复习</p>
-   </a>
-   <a href="/categories/algorithm/" class="category-card">
-   <h3>算法刷题</h3>
-   <p>LeetCode 题解与竞赛心得</p>
-   </a>
-   <a href="/categories/cs/" class="category-card">
-   <h3>计算机科学</h3>
-   <p>操作系统、网络等理论基础</p>
-   </a>
-   <a href="/categories/open-source/" class="project-card"> <!-- 特殊样式突出项目 -->
-   <h3>开源项目</h3>
-   <p>MiniGameServer 及更多实践</p>
-   </a>
-   </div>
-   
-   ---
-   
-   ## 🔗 关于 & 联系
-   
-   - **关于我**：[了解更多我的故事](/about.html)
-   - **代码仓库**：[GitHub @ylj-dev](https://github.com/ylj-dev)
-   - **算法练习**：[LeetCode 主页](https://leetcode.cn/u/ylj-v/)
-   
-   > **“Talk is cheap. Show me the code.”** — Linus Torvalds
-   EOF
-   ```
-   {% endraw %}
+   `index.md`
 
 5. **创建归档页面**
 
-   {% raw %}
-   ```bash
-   cat > archive.md << 'EOF'
-   ---
-   layout: page
-   title: "文章归档"
-   permalink: /archive.html
-   ---
-   
-   # 所有文章
-   
-   按时间倒序排列：
-   
-   {% for post in site.posts %}
-   ## {{ post.date | date: "%Y年%m月" }}
-   - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%m-%d" }}
-   {% endfor %}
-   EOF
-   ```
-   {% endraw %}
+   `archive.md`
 
 6. **创建关于页面**
 
-   ```bash
-   cat > about.md << 'EOF'
-   ---
-   layout: page
-   title: "关于我"
-   permalink: /about.html
-   ---
-   
-   ## 👋 我是谁？
-   
-   我是ylj，一名游戏服务器开发工程师，主要使用C++进行后端开发。
-   
-   ## 🎯 当前目标
-   
-   2026年学习计划：
-   1. **C++基础巩固**：从基础到高级，系统复习
-   2. **算法能力提升**：LeetCode每日一题，参加周赛
-   3. **计算机科学基础**：阅读经典书籍，打好理论基础
-   4. **项目实践**：开发开源项目，锻炼工程能力
-   
-   ## 📊 技术栈
-   
-   - **主要语言**: C++, Go
-   - **开发方向**: 游戏服务器后端
-   - **熟悉框架**: 网络编程、多线程、数据库
-   - **工具链**: Git, CMake, VSCode, Docker
-   
-   ## 🎓 学习方式
-   
-   1. **系统学习**：按知识体系逐步推进
-   2. **刻意练习**：每个知识点都动手编码
-   3. **输出驱动**：通过写博客巩固理解
-   4. **社群互动**：在社区中学习和分享
-   
-   ## 💌 联系我
-   
-   - GitHub: [ylj-dev](https://github.com/ylj-dev)
-   - 博客: [ylj-dev.github.io](https://ylj-dev.github.io)
-   
-   ---
-   
-   *路虽远，行则将至；事虽难，做则必成*
-   EOF
-   ```
+   `about.md`
 
 7. **更新现有文章的分类标签**
 
@@ -667,7 +415,7 @@ categories: [cs]
 
 **完成标志**：前往 Actions 页面(`https://github.com/ylj-dev/ylj-dev.github.io/actions`)。会看到一个新的工作流（可能是 `jekyll` 或 `pages-build-deployment`）立刻开始运行，构建成功后访问博客网站查看所有更新是否已生效。
 
-### **禁用整篇文章的Liquid渲染**
+### **禁用整篇文章的Liquid渲染（效果不佳，尽量文章中不要出现Liquid模板语言标记）**
 
 - **问题：**
 

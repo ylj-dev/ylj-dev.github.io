@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "我的C++学习之旅开始啦！"
+title: "我的C++复习之旅开始啦！"
 date: 2026-01-06
 categories: [cpp, open-source]
-excerpt: "记录我作为游戏服务器开发者开始C++学习计划的过程"
+excerpt: "记录我作为游戏服务器开发者开始C++复习计划的过程"
 ---
 
 
